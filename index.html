@@ -26,11 +26,13 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      position: relative;
     }
 
     .header {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
+      z-index: 2;
     }
 
     h1 {
@@ -66,6 +68,7 @@
       text-shadow: 0 0 5px rgba(0, 255, 204, 0.4);
       white-space: pre-wrap;
       word-wrap: break-word;
+      z-index: 2;
     }
 
     .footer {
@@ -73,10 +76,47 @@
       font-size: 0.85rem;
       color: #556270;
       letter-spacing: 0.5px;
+      z-index: 2;
+    }
+
+    /* تصميم ولعبة حركة القطة اللطيفة في الأسفل */
+    .cute-cat {
+      position: absolute;
+      bottom: 10px;
+      left: -60px;
+      font-size: 1.8rem;
+      z-index: 1;
+      animation: walkCat 18s linear infinite;
+      filter: drop-shadow(0 0 8px rgba(0, 255, 204, 0.4));
+      pointer-events: none;
+    }
+
+    @keyframes walkCat {
+      0% {
+        left: -60px;
+        transform: scaleX(1);
+      }
+      49% {
+        transform: scaleX(1);
+      }
+      50% {
+        left: calc(100% + 20px);
+        transform: scaleX(-1);
+      }
+      99% {
+        transform: scaleX(-1);
+      }
+      100% {
+        left: -60px;
+        transform: scaleX(1);
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- القطة المتحركة اللطيفة -->
+  <div class="cute-cat">🐱</div>
 
   <div class="header">
     <h1>PS5 RELAPSE</h1>
@@ -87,7 +127,7 @@
 
   <div class="footer">Optimized for Stability</div>
 
-  <!-- السكربتات الأساسية مرتبة بالتسلسل الصحيح لمنع أخطاء الذاكرة وضمان الاستقرار -->
+  <!-- السكربتات الأساسية مرتبة بالتسلسل الصحيح لضمان الاستقرار -->
   <script src="./src/firmware.js"></script>
   <script src="./src/utils/syscalls.js"></script>
   <script src="./src/rop.js"></script>
