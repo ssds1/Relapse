@@ -1,22 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <title>PS5-Relapse</title>
-  <style>
-    html, body {
-      background: #060606;
-      color: #fff;
-    }
-  </style>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>PS5-Relapse</title>
+    <style>
+        html, body {
+            background: #060606;
+            color: #fff;
+            font-family: Tahoma, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        /* تنسيق صورة القط في الأعلى */
+        .cat-container {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .cat-image {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #0070d1;
+            box-shadow: 0 0 15px rgba(0, 112, 209, 0.5);
+        }
+        #console {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-  <div id="console"></div>
-  <script src="./src/firmware.js"></script>
-  <script src="./src/main.js"></script>
-  <script src="./src/rop.js"></script>
-  <script src="./src/utils/syscalls.js"></script>
-  <script type="module" src="./src/site.js"></script>
+
+    <!-- صورة القط في الأعلى -->
+    <div class="cat-container">
+        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400" alt="Cat" class="cat-image">
+    </div>
+
+    <!-- الأكواد ومنطقة الاستغلال في الأسفل -->
+    <div id="console"></div>
+
+    <script src="./src/firmware.js"></script>
+    <script src="./src/main.js"></script>
+    <script src="./src/rop.js"></script>
+    <script src="./src/utils/syscalls.js"></script>
+    <script type="module" src="./src/site.js"></script>
 </body>
 </html>
