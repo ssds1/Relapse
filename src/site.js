@@ -60,6 +60,12 @@ async function run() {
 
   await import("./relapse_exploit.js");
   await main(primitive);
+
+  // إشعار بنجاح الجيلبريك وفتح قائمة البايلودات تلقائياً هنا
+  writeLog("Jailbreak successful! Opening Payloads...", "success");
+  
+  // إذا كان لديك دالة أو حدث معين لفتح قائمة البايلودات، يمكنك استدعاؤها هنا
+  // مثال: if (typeof openPayloadsMenu === 'function') openPayloadsMenu();
 }
 
 run().catch((error) => writeLog(error instanceof Error ? error.message : String(error), "error"));
