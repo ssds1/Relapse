@@ -18,8 +18,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      overflow: hidden;
+      justify-content: flex-start;
+      overflow-y: auto;
+      padding: 20px;
     }
 
     .header {
@@ -28,87 +29,91 @@
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       margin: 0;
       letter-spacing: 2px;
       color: #ffffff;
-      text-shadow: 0 0 15px rgba(0, 168, 255, 0.6), 0 0 30px rgba(0, 168, 255, 0.3);
+      text-shadow: 0 0 15px rgba(0, 168, 255, 0.6);
     }
 
     .subtitle {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #00ffcc;
       margin-top: 5px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      text-shadow: 0 0 8px rgba(0, 255, 204, 0.4);
     }
 
-    /* حاوية الأزرار الجديدة */
-    .button-container {
-      display: flex;
+    /* شبكة الأزرار الشبيهة بالصورة */
+    .payloads-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 15px;
+      width: 100%;
+      max-width: 900px;
       margin-bottom: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
     }
 
-    .btn {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 10px;
-      color: #fff;
-      padding: 12px 24px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    .btn:hover {
-      background: rgba(0, 168, 255, 0.3);
-      border-color: #00a8ff;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 168, 255, 0.4);
-    }
-
-    .btn-payload {
-      border-color: rgba(0, 255, 204, 0.3);
-      color: #00ffcc;
-    }
-
-    .btn-payload:hover {
-      background: rgba(0, 255, 204, 0.2);
-      border-color: #00ffcc;
-    }
-
-    #console {
-      width: 80%;
-      max-width: 650px;
-      height: 150px;
+    .payload-card {
       background: rgba(15, 20, 30, 0.6);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 14px;
+      border-radius: 12px;
       padding: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      overflow-y: auto;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      text-align: left;
+    }
+
+    .payload-card:hover {
+      background: rgba(0, 168, 255, 0.15);
+      border-color: #00a8ff;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 168, 255, 0.3);
+    }
+
+    .payload-title {
+      font-size: 1.1rem;
+      font-weight: bold;
       color: #00ffcc;
-      text-shadow: 0 0 5px rgba(0, 255, 204, 0.4);
+      margin-bottom: 5px;
+    }
+
+    .payload-desc {
+      font-size: 0.75rem;
+      color: #8c9bae;
+      line-height: 1.3;
+    }
+
+    #console {
+      width: 100%;
+      max-width: 900px;
+      height: 120px;
+      background: rgba(10, 15, 25, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 12px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.85rem;
+      color: #00ffcc;
+      overflow-y: auto;
       white-space: pre-wrap;
       word-wrap: break-word;
     }
 
     .footer {
-      margin-top: 20px;
-      font-size: 0.8rem;
+      margin-top: 15px;
+      font-size: 0.75rem;
       color: #556270;
-      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 768px) {
+      .payloads-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -116,18 +121,43 @@
 
   <div class="header">
     <h1>PS5 RELAPSE</h1>
-    <div class="subtitle">Exploit & Payload Host</div>
+    <div class="subtitle">Payloads Manager (Port 9021)</div>
   </div>
 
-  <!-- أزرار التحكم الجديدة -->
-  <div class="button-container">
-    <button class="btn" onclick="location.reload()">Reload Exploit</button>
-    <button class="btn btn-payload" onclick="loadPayload('etaHEN.bin')">Load etaHEN</button>
-    <!-- يمكنك إضافة أزرار إضافية هنا لباقي البايلودات بنفس الطريقة -->
+  <!-- شبكة البايلودات (اختر واضغط لتشغيل البايلود مباشرة) -->
+  <div class="payloads-grid">
+    <div class="payload-card" onclick="loadPayload('./payloads/etaHEN.bin')">
+      <div class="payload-title">etaHEN</div>
+      <div class="payload-desc">Homebrew enabler with FTP and payload support.</div>
+    </div>
+
+    <div class="payload-card" onclick="loadPayload('./payloads/onionHEN.bin')">
+      <div class="payload-title">onionHEN</div>
+      <div class="payload-desc">Toolbox for jailbroken PS5, built on etaHEN.</div>
+    </div>
+
+    <div class="payload-card" onclick="loadPayload('./payloads/ps5upload.bin')">
+      <div class="payload-title">ps5upload</div>
+      <div class="payload-desc">Fast reliable file transfers from PC to PS5.</div>
+    </div>
+
+    <div class="payload-card" onclick="loadPayload('./payloads/ps5debug.bin')">
+      <div class="payload-title">ps5debug-NG</div>
+      <div class="payload-desc">Debugger payload with a userland TCP protocol server.</div>
+    </div>
+
+    <div class="payload-card" onclick="loadPayload('./payloads/ftp.bin')">
+      <div class="payload-title">zftpd</div>
+      <div class="payload-desc">Zero-copy FTP/HTTP server.</div>
+    </div>
+
+    <div class="payload-card" onclick="loadPayload('./payloads/garlic.bin')">
+      <div class="payload-title">garlic-savemgr</div>
+      <div class="payload-desc">PS5 save decrypt/encrypt/browse utility.</div>
+    </div>
   </div>
 
-  <div id="console">Ready. Click 'Load etaHEN' after exploit succeeds.</div>
-
+  <div id="console">Ready. Select a payload to send.</div>
   <div class="footer">Custom UI by Ssds</div>
 
   <!-- السكربتات الأساسية -->
@@ -137,11 +167,27 @@
   <script src="./src/utils/syscalls.js"></script>
   <script type="module" src="./src/site.js"></script>
 
-  <!-- دالة بسيطة لربط الأزرار بتشغيل البايلودات -->
+  <!-- دالة إرسال البايلود عبر المنفذ -->
   <script>
-    function loadPayload(payloadName) {
-      writeLog("Loading payload: " + payloadName, "info");
-      // ضع هنا الكود أو الدالة الخاصة بإرسال أو تحميل ملف البايلود إذا كان مدعوماً في ملفاتك
+    async function loadPayload(filePath) {
+      try {
+        writeLog("Fetching: " + filePath, "info");
+        const response = await fetch(filePath);
+        if (!response.ok) throw new Error("الملف غير موجود: " + filePath);
+        
+        const payloadData = await response.arrayBuffer();
+        writeLog("Sending to elfldr (port 9021)...", "info");
+
+        await fetch("http://127.0.0.1:9021", {
+          method: "POST",
+          body: payloadData,
+          mode: "no-cors"
+        });
+
+        writeLog("Payload sent successfully!", "success");
+      } catch (err) {
+        writeLog("Error: " + err.message, "error");
+      }
     }
   </script>
 </body>
