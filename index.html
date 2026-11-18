@@ -6,11 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PS5 - Relapse Host</title>
   
-  <link rel="preload" href="./src/firmware.js" as="script">
-  <link rel="preload" href="./src/main.js" as="script">
-  <link rel="preload" href="./src/rop.js" as="script">
-  <link rel="preload" href="./src/utils/syscalls.js" as="script">
-
   <style>
     html, body {
       margin: 0;
@@ -81,31 +76,18 @@
 
   <div class="header">
     <h1>PS5 RELAPSE</h1>
-    <div class="subtitle">Payload Manager Auto-Load</div>
+    <div class="subtitle">High-Speed Exploit Host</div>
   </div>
 
-  <div id="console">Initializing Exploit & Payloads...</div>
+  <div id="console">Initializing...</div>
 
   <div class="footer">Optimized for Speed</div>
 
-  <script src="./src/firmware.js" async></script>
-  <script src="./src/main.js" async></script>
-  <script src="./src/rop.js" async></script>
-  <script src="./src/utils/syscalls.js" async></script>
+  <!-- السكربتات الأساسية بالترتيب السليم والمستقرار تماماً -->
+  <script src="./src/firmware.js"></script>
+  <script src="./src/main.js"></script>
+  <script src="./src/rop.js"></script>
+  <script src="./src/utils/syscalls.js"></script>
   <script type="module" src="./src/site.js"></script>
-
-  <!-- كود التشغيل التلقائي لمدير البايلودات بعد اكتمال التحميل -->
-  <script>
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        // يمكنك تعديل اسم الدالة أدناه لتتطابق مع الدالة المسؤولة عن فتح القائمة في ملف site.js لديك
-        if (typeof openPayloadManager === 'function') {
-          openPayloadManager();
-        } else if (typeof showPayloads === 'function') {
-          showPayloads();
-        }
-      }, 1000); // تأخير لمدة ثانية لضمان استقرار البيئة قبل إظهار القائمة
-    });
-  </script>
 </body>
 </html>
