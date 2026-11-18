@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PS5 - Relapse Host</title>
   
-  <!-- تحسين السرعة عبر التحميل المسبق للسكربتات الحساسة -->
+  <!-- التحميل المسبق للسكربتات الحساسة لضمان الاستقرار والسرعة -->
   <link rel="preload" href="./src/firmware.js" as="script">
   <link rel="preload" href="./src/main.js" as="script">
   <link rel="preload" href="./src/rop.js" as="script">
@@ -70,7 +70,7 @@
 
     .footer {
       margin-top: 25px;
-      font-size: 0.85px;
+      font-size: 0.85rem;
       color: #556270;
       letter-spacing: 0.5px;
     }
@@ -80,18 +80,18 @@
 
   <div class="header">
     <h1>PS5 RELAPSE</h1>
-    <div class="subtitle">High-Speed Exploit Host</div>
+    <div class="subtitle">Stable Exploit Host</div>
   </div>
 
-  <div id="console">Loading High-Speed Environment...</div>
+  <div id="console">Initializing Stable Environment...</div>
 
-  <div class="footer">Optimized for Speed</div>
+  <div class="footer">Optimized for Stability</div>
 
-  <!-- استخدام خاصية async لجعل الملفات تتحمل وتنفذ بسرعة أعلى دون تجميد الواجهة -->
-  <script src="./src/firmware.js" async></script>
-  <script src="./src/main.js" async></script>
-  <script src="./src/rop.js" async></script>
-  <script src="./src/utils/syscalls.js" async></script>
+  <!-- السكربتات الأساسية مرتبة بالتسلسل الصحيح لمنع أخطاء الذاكرة وضمان الاستقرار -->
+  <script src="./src/firmware.js"></script>
+  <script src="./src/utils/syscalls.js"></script>
+  <script src="./src/rop.js"></script>
+  <script src="./src/main.js"></script>
   <script type="module" src="./src/site.js"></script>
 </body>
 </html>
