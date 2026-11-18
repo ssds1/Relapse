@@ -44,7 +44,6 @@
       text-transform: uppercase;
     }
 
-    /* شبكة الأزرار الشبيهة بالصورة */
     .payloads-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -67,11 +66,11 @@
       text-align: left;
     }
 
-    .payload-card:hover {
-      background: rgba(0, 168, 255, 0.15);
+    .payload-card:hover, .payload-card.active {
+      background: rgba(0, 168, 255, 0.25);
       border-color: #00a8ff;
       transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0, 168, 255, 0.3);
+      box-shadow: 0 6px 20px rgba(0, 168, 255, 0.4);
     }
 
     .payload-title {
@@ -86,109 +85,3 @@
       color: #8c9bae;
       line-height: 1.3;
     }
-
-    #console {
-      width: 100%;
-      max-width: 900px;
-      height: 120px;
-      background: rgba(10, 15, 25, 0.8);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      padding: 12px;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 0.85rem;
-      color: #00ffcc;
-      overflow-y: auto;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-    }
-
-    .footer {
-      margin-top: 15px;
-      font-size: 0.75rem;
-      color: #556270;
-    }
-
-    @media (max-width: 768px) {
-      .payloads-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="header">
-    <h1>PS5 RELAPSE</h1>
-    <div class="subtitle">Payloads Manager (Port 9021)</div>
-  </div>
-
-  <!-- شبكة البايلودات (اختر واضغط لتشغيل البايلود مباشرة) -->
-  <div class="payloads-grid">
-    <div class="payload-card" onclick="loadPayload('./payloads/etaHEN.bin')">
-      <div class="payload-title">etaHEN</div>
-      <div class="payload-desc">Homebrew enabler with FTP and payload support.</div>
-    </div>
-
-    <div class="payload-card" onclick="loadPayload('./payloads/onionHEN.bin')">
-      <div class="payload-title">onionHEN</div>
-      <div class="payload-desc">Toolbox for jailbroken PS5, built on etaHEN.</div>
-    </div>
-
-    <div class="payload-card" onclick="loadPayload('./payloads/ps5upload.bin')">
-      <div class="payload-title">ps5upload</div>
-      <div class="payload-desc">Fast reliable file transfers from PC to PS5.</div>
-    </div>
-
-    <div class="payload-card" onclick="loadPayload('./payloads/ps5debug.bin')">
-      <div class="payload-title">ps5debug-NG</div>
-      <div class="payload-desc">Debugger payload with a userland TCP protocol server.</div>
-    </div>
-
-    <div class="payload-card" onclick="loadPayload('./payloads/ftp.bin')">
-      <div class="payload-title">zftpd</div>
-      <div class="payload-desc">Zero-copy FTP/HTTP server.</div>
-    </div>
-
-    <div class="payload-card" onclick="loadPayload('./payloads/garlic.bin')">
-      <div class="payload-title">garlic-savemgr</div>
-      <div class="payload-desc">PS5 save decrypt/encrypt/browse utility.</div>
-    </div>
-  </div>
-
-  <div id="console">Ready. Select a payload to send.</div>
-  <div class="footer">Custom UI by Ssds</div>
-
-  <!-- السكربتات الأساسية -->
-  <script src="./src/firmware.js"></script>
-  <script src="./src/main.js"></script>
-  <script src="./src/rop.js"></script>
-  <script src="./src/utils/syscalls.js"></script>
-  <script type="module" src="./src/site.js"></script>
-
-  <!-- دالة إرسال البايلود عبر المنفذ -->
-  <script>
-    async function loadPayload(filePath) {
-      try {
-        writeLog("Fetching: " + filePath, "info");
-        const response = await fetch(filePath);
-        if (!response.ok) throw new Error("الملف غير موجود: " + filePath);
-        
-        const payloadData = await response.arrayBuffer();
-        writeLog("Sending to elfldr (port 9021)...", "info");
-
-        await fetch("http://127.0.0.1:9021", {
-          method: "POST",
-          body: payloadData,
-          mode: "no-cors"
-        });
-
-        writeLog("Payload sent successfully!", "success");
-      } catch (err) {
-        writeLog("Error: " + err.message, "error");
-      }
-    }
-  </script>
-</body>
-</html>
