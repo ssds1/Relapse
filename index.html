@@ -24,11 +24,11 @@
 
     .header {
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
     h1 {
-      font-size: 2.8rem;
+      font-size: 2.5rem;
       margin: 0;
       letter-spacing: 2px;
       color: #ffffff;
@@ -36,28 +36,68 @@
     }
 
     .subtitle {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: #00ffcc;
-      margin-top: 6px;
+      margin-top: 5px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       text-shadow: 0 0 8px rgba(0, 255, 204, 0.4);
     }
 
+    /* حاوية الأزرار الجديدة */
+    .button-container {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      color: #fff;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn:hover {
+      background: rgba(0, 168, 255, 0.3);
+      border-color: #00a8ff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 168, 255, 0.4);
+    }
+
+    .btn-payload {
+      border-color: rgba(0, 255, 204, 0.3);
+      color: #00ffcc;
+    }
+
+    .btn-payload:hover {
+      background: rgba(0, 255, 204, 0.2);
+      border-color: #00ffcc;
+    }
+
     #console {
       width: 80%;
       max-width: 650px;
-      height: 180px;
+      height: 150px;
       background: rgba(15, 20, 30, 0.6);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 14px;
-      padding: 20px;
+      padding: 15px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       overflow-y: auto;
       font-family: 'Courier New', Courier, monospace;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: #00ffcc;
       text-shadow: 0 0 5px rgba(0, 255, 204, 0.4);
       white-space: pre-wrap;
@@ -65,8 +105,8 @@
     }
 
     .footer {
-      margin-top: 25px;
-      font-size: 0.85rem;
+      margin-top: 20px;
+      font-size: 0.8rem;
       color: #556270;
       letter-spacing: 0.5px;
     }
@@ -76,18 +116,33 @@
 
   <div class="header">
     <h1>PS5 RELAPSE</h1>
-    <div class="subtitle">High-Speed Exploit Host</div>
+    <div class="subtitle">Exploit & Payload Host</div>
   </div>
 
-  <div id="console">Initializing...</div>
+  <!-- أزرار التحكم الجديدة -->
+  <div class="button-container">
+    <button class="btn" onclick="location.reload()">Reload Exploit</button>
+    <button class="btn btn-payload" onclick="loadPayload('etaHEN.bin')">Load etaHEN</button>
+    <!-- يمكنك إضافة أزرار إضافية هنا لباقي البايلودات بنفس الطريقة -->
+  </div>
 
-  <div class="footer">Optimized for Speed</div>
+  <div id="console">Ready. Click 'Load etaHEN' after exploit succeeds.</div>
 
-  <!-- السكربتات الأساسية بالترتيب السليم والمستقرار تماماً -->
+  <div class="footer">Custom UI by Ssds</div>
+
+  <!-- السكربتات الأساسية -->
   <script src="./src/firmware.js"></script>
   <script src="./src/main.js"></script>
   <script src="./src/rop.js"></script>
   <script src="./src/utils/syscalls.js"></script>
   <script type="module" src="./src/site.js"></script>
+
+  <!-- دالة بسيطة لربط الأزرار بتشغيل البايلودات -->
+  <script>
+    function loadPayload(payloadName) {
+      writeLog("Loading payload: " + payloadName, "info");
+      // ضع هنا الكود أو الدالة الخاصة بإرسال أو تحميل ملف البايلود إذا كان مدعوماً في ملفاتك
+    }
+  </script>
 </body>
 </html>
